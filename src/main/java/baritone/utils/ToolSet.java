@@ -19,6 +19,7 @@ package baritone.utils;
 
 import baritone.Baritone;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.Holder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -26,7 +27,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -34,6 +34,8 @@ import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -143,7 +145,7 @@ public class ToolSet {
         possible, this lets us make pathing depend on the actual tool to be used (if auto tool is disabled)
         */
         if (!Baritone.settings().autoTool.value && pathingCalculation) {
-            return player.getInventory().selected;
+            return player.getInventory().getSelectedSlot();
         }
 
         int best = 0;
@@ -153,7 +155,7 @@ public class ToolSet {
         BlockState blockState = b.defaultBlockState();
         for (int i = 0; i < 9; i++) {
             ItemStack itemStack = player.getInventory().getItem(i);
-            if (!Baritone.settings().useSwordToMine.value && itemStack.getItem() instanceof SwordItem) {
+            if (!Baritone.settings().useSwordToMine.value && itemStack.getItem().components().has(DataComponents.WEAPON)) {
                 continue;
             }
 
@@ -245,11 +247,11 @@ public class ToolSet {
      */
     private double potionAmplifier() {
         double speed = 1;
-        if (player.hasEffect(MobEffects.DIG_SPEED)) {
-            speed *= 1 + (player.getEffect(MobEffects.DIG_SPEED).getAmplifier() + 1) * 0.2;
+        if (player.hasEffect(MobEffects.HASTE)) {
+            speed *= 1 + (player.getEffect(MobEffects.HASTE).getAmplifier() + 1) * 0.2;
         }
-        if (player.hasEffect(MobEffects.DIG_SLOWDOWN)) {
-            switch (player.getEffect(MobEffects.DIG_SLOWDOWN).getAmplifier()) {
+        if (player.hasEffect(MobEffects.MINING_FATIGUE)) {
+            switch (player.getEffect(MobEffects.MINING_FATIGUE).getAmplifier()) {
                 case 0:
                     speed *= 0.3;
                     break;
