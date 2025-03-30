@@ -21,16 +21,15 @@ import baritone.api.command.argument.IArgConsumer;
 import baritone.api.command.exception.CommandException;
 import baritone.api.command.exception.CommandInvalidTypeException;
 import baritone.api.utils.Helper;
-
-import java.awt.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Function;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.MutableComponent;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
 
 public class Paginator<E> implements Helper {
 
@@ -78,7 +77,8 @@ public class Paginator<E> implements Helper {
         MutableComponent prevPageComponent = Component.literal("<<");
         if (hasPrevPage) {
             prevPageComponent.setStyle(prevPageComponent.getStyle()
-                    .withClickEvent(new ClickEvent.RunCommand(String.format("%s %d", commandPrefix, page - 1)
+                    .withClickEvent(new ClickEvent.RunCommand(
+                            String.format("%s %d", commandPrefix, page - 1)
                     ))
                     .withHoverEvent(new HoverEvent.ShowText(
                             Component.literal("Click to view previous page")

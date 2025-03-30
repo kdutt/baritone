@@ -19,8 +19,8 @@ package baritone.utils;
 
 import baritone.Baritone;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffects;
@@ -34,8 +34,6 @@ import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-
-
 
 import java.util.HashMap;
 import java.util.List;

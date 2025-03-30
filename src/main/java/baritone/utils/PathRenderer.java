@@ -266,9 +266,9 @@ public final class PathRenderer implements IRenderer {
 
             if (settings.renderGoalXZBeacon.value) {
                 //TODO: check
-                //textureManager.getTexture(TEXTURE_BEACON_BEAM).bind();
+//                textureManager.getTexture(TEXTURE_BEACON_BEAM).bind();
                 if (settings.renderGoalIgnoreDepth.value) {
-                    //RenderSystem.disableDepthTest();
+//                    RenderSystem.disableDepthTest();
                 }
 
                 stack.pushPose(); // push
@@ -294,7 +294,7 @@ public final class PathRenderer implements IRenderer {
                 stack.popPose(); // pop
 
                 if (settings.renderGoalIgnoreDepth.value) {
-                    //RenderSystem.enableDepthTest();
+//                    RenderSystem.enableDepthTest();
                 }
                 return;
             }

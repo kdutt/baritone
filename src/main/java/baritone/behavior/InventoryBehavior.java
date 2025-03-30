@@ -24,7 +24,9 @@ import baritone.utils.ToolSet;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -36,6 +38,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+
 import java.util.ArrayList;
 import java.util.OptionalInt;
 import java.util.Random;
@@ -197,12 +200,12 @@ public final class InventoryBehavior extends Behavior implements Helper {
             // acceptableThrowawayItems to the CalculationContext
             if (desired.test(item)) {
                 if (select) {
-                    p.getInventory().selected = i;
+                    p.getInventory().setSelectedSlot(i);
                 }
                 return true;
             }
         }
-        if (desired.test(p.getInventory().offhand.get(0))) {
+        if (desired.test(p.getItemBySlot(EquipmentSlot.OFFHAND))) {
             // main hand takes precedence over off hand
             // that means that if we have block A selected in main hand and block B in off hand, right clicking places block B
             // we've already checked above ^ and the main hand can't possible have an acceptablethrowawayitem
@@ -212,7 +215,7 @@ public final class InventoryBehavior extends Behavior implements Helper {
                 ItemStack item = inv.get(i);
                 if (item.isEmpty() || item.getItem().components().has(DataComponents.TOOL)) {
                     if (select) {
-                        p.getInventory().selected.setSelectedSlot(i);
+                        p.getInventory().setSelectedSlot(i);
                     }
                     return true;
                 }
