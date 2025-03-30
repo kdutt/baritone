@@ -57,7 +57,7 @@ public interface IRenderer {
             .withLocation("pipelines/baritone_lines_with_depth")
             .withDepthTestFunction(DepthTestFunction.LEQUAL_DEPTH_TEST)
             .build(),
-        RenderType.CompositeState.builder()
+        RenderType.CompositeState.CompositeStateBuilder()
             .createCompositeState(false)
     );
     RenderType linesNoDepthRenderType = RenderType.create(
@@ -67,7 +67,7 @@ public interface IRenderer {
             .withLocation("pipelines/baritone_lines_no_depth")
             .withDepthTestFunction(DepthTestFunction.NO_DEPTH_TEST)
             .build(),
-        RenderType.CompositeState.builder()
+        RenderType.CompositeState.CompositeStateBuilder()
             .createCompositeState(false)
     );
 
